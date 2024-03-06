@@ -9,9 +9,9 @@ on:
       docker_registry:
         required: true
         type: string
+    secrets:
       docker_pat:
         required: true
-        type: string
 
 jobs:
   compliance:
