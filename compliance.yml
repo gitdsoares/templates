@@ -3,13 +3,13 @@ name: Compliance
 on:
   workflow_call:
     inputs:
-      app_name:
+      APP_NAME:
         required: true
         type: string
     secrets:
-      docker_registry:
+      DOCKER_REGISTRY:
         required: true
-      docker_pat:
+      DOCKER_PAT:
         required: true
 
 jobs:
