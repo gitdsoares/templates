@@ -12,6 +12,7 @@ on:
 
 jobs:
   compliance:
+    name: Compliance
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
