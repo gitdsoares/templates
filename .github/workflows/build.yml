@@ -11,12 +11,13 @@ on:
         required: true
       DOCKER_PAT:
         required: true
+      GIT_PAT:
+        required: true
 
 jobs:
   workflow:
     name: Workflow
     runs-on: ubuntu-latest
-    permissions: write-all
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
