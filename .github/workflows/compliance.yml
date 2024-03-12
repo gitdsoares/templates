@@ -22,9 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Prerequisites
-        run: |
-          pip install bandit
-          npm install
+        run: pip install bandit
 
       - name: Bandit SAST Scan
         if: contains(github.repository, 'python')
