@@ -22,9 +22,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Prerequisites
-        run: pip install bandit
+        run: |
+          pip install bandit
+          npm install
 
       - name: Bandit SAST Scan
+        if: contains(github.repository, 'python')
         run: bandit -ll -ii -r . -f json -o bandit-results.json
 
       - name: Trivy File Scan
@@ -57,7 +60,7 @@ jobs:
 
       - name: Publish Bandit Report
         uses: actions/upload-artifact@v4
-        if: always()
+        if: contains(github.repository, 'python')
         with:
           name: bandit-results
           path: bandit-results.json
