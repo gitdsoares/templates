@@ -1,0 +1,36 @@
+name: Tests
+
+on:
+  workflow_call:
+    inputs:
+      APP_NAME:
+        required: true
+        type: string
+
+jobs:
+  workflow-node:
+    name: Workflow
+    if: contains(github.repository, 'node')
+    runs-on: ubuntu-latest
+
+    strategy:
+        matrix:
+          node-version: [21.x]
+
+    steps:
+        - name: Git Checkout
+          uses: actions/checkout@v4
+
+        - name: Set-up Version ${{ matrix.node-version }}
+          uses: actions/setup-node@v4
+          with:
+            node-version: ${{ matrix.node-version }}
+
+        - name: Install Dependencies
+          run: |
+            npm ci
+
+        - name: Run Unit Tests
+          run: npm test
+          env:
+            CI: true
