@@ -28,6 +28,10 @@ jobs:
         if: contains(github.repository, 'python')
         run: bandit -ll -ii -r . -f json -o bandit-results.json
 
+      - name: ESLint SAST Scan
+        if: contains(github.repository, 'node')
+        run: npx eslint .
+
       - name: Trivy File Scan
         uses: aquasecurity/trivy-action@master
         with:
