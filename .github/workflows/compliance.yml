@@ -11,6 +11,8 @@ on:
         required: true
       DOCKER_PAT:
         required: true
+      SECRET_KEY:
+        required: false
 
 jobs:
   workflow:
@@ -43,6 +45,8 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -f Dockerfile -t ${{ inputs.APP_NAME }}:security-test .
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
       - name: Docker Scout Image Scan
         uses: docker/scout-action@v1
