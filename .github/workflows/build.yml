@@ -13,6 +13,8 @@ on:
         required: true
       GIT_PAT:
         required: true
+      SECRET_KEY:
+        required: false
 
 jobs:
   workflow:
@@ -46,6 +48,8 @@ jobs:
           context: .
           tags: "${{ secrets.DOCKER_REGISTRY }}/${{ inputs.APP_NAME }}:${{ steps.tag_version.outputs.new_tag }}"
           push: true
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     outputs:
       IMAGE_TAG: ${{ steps.tag_version.outputs.new_tag }}
